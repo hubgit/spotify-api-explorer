@@ -1,0 +1,76 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Spotify "API"</title>
+<style>
+body { font-family: sans-serif; }
+label { display: block; }
+</style>
+<body>
+<h2>Search</h2>
+<p><a href="https://developer.spotify.com/web-api/search-item/">Documentation</a></p>
+<form action="https://api.spotify.com/v1/search/">
+<label>Query <input name="q" type="text" size="100" required></label>
+<label>Type <select name="type"><option>artist</option><option>album</option><option>track</option></select></label>
+<label>Limit <input name="limit" type="number" value="20" max="50" min="0"></label>
+<label>Offset <input name="offset" type="number" value="0" min="0"></label>
+<button type="submit">Search</button>
+</form>
+
+<!--
+<script>
+// scoped querySelectorAll that returns an array or a node
+var select = function(selector, node) {
+  if (node) {
+    selector = ':scope ' + selector;
+  } else {
+    node = document;
+  }
+
+  if (!Array.isArray(selector)) {
+    return node.querySelector(selector);
+  }
+
+  var nodes = node.querySelectorAll(selector);
+
+  return Array.prototype.slice.call(nodes);
+};
+
+// replace the placeholders in the form action URI template, and remove those inputs from the form
+var handleSubmit = function(event) {
+  event.preventDefault();
+
+  var form = event.target;
+
+  var action = form.getAttribute('data-action').replace(/\{(\w+)\}/, function getFormValue(match, field) {
+    var nodes = select('[name]').filter(function(node) {
+      return node.getAttribute('name') === match;
+    });
+
+    if (!nodes.length) {
+      return '';
+    }
+
+    var value = node.val();
+    node.remove();
+    return encodeURIComponent(value);
+  }));
+
+  form.find("select").each(function() {
+    var select = $(this);
+    formToSubmit.find("select[name=" + select.attr("name") + "]").val(select.val());
+  });
+
+  formToSubmit.find("input,select").each(function(index, node) {
+    var node = $(node);
+
+    if (!node.val()) node.remove();
+  });
+
+  formToSubmit.submit();
+};
+
+select('form[data-action]').forEach(function(form) {
+  form.addEventListener('submit', handleSubmit);
+});
+</script>
+-->
